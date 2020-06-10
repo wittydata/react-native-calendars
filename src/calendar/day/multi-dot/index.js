@@ -73,9 +73,22 @@ class Day extends Component {
     } else if (isDisabled) {
       textStyle.push(this.style.disabledText);
     } else if (this.props.state === 'today') {
-      containerStyle.push(this.style.today);
+      const newTodayStyle = {
+        borderColor: '#18bfa988',
+        borderWidth: 1,
+        borderRadius: 20,
+        backgroundColor: '#00000000'
+      };
+      containerStyle.push(this.style.today, newTodayStyle);
       textStyle.push(this.style.todayText);
     }
+    
+    if (marking.highlighted) {
+      if (marking.highlightedTextColor) {
+        textStyle.push({color: marking.highlightedTextColor, fontWeight: '600'});
+      }
+    }
+
     
     return (
       <TouchableOpacity
